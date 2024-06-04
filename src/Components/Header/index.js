@@ -1,9 +1,10 @@
 import { Button, Link } from '@mui/material';
 import Logo from '../../assets/images/Logo.png';
 import CountryDropdown from '../CountryDropdown';
-import { IoSearch } from 'react-icons/io5';
 import { FiUser } from "react-icons/fi";
 import { IoBagOutline } from "react-icons/io5";
+import SearchBox from './SearchBox';
+import Navigation from './Navigation';
 
 const Header = ()=>{
     return(
@@ -24,12 +25,7 @@ const Header = ()=>{
                         <div className='col-sm-10 d-flex align-items-center part2'>
                             <CountryDropdown/>
 
-                            {/* Search start */}
-                                <div className='headerSearch ml-3 mr-3'>
-                                    <input type='next' placeholder='Tìm kiếm vật phẩm....'/>
-                                    <Button><IoSearch/></Button>
-                                </div>
-                            {/* Search end */}
+                            <SearchBox/>
 
                             <div className='part3 d-flex align-items-center ml-auto'>
                                 <Button className='circle mr-3'><FiUser/></Button>
@@ -45,9 +41,12 @@ const Header = ()=>{
                     </div>
                     </div>
                 </header>
-            </div>
+
+                <Navigation/>
+                
+            </div>  
         </>
     )
-};
+};      
 
 export default Header;

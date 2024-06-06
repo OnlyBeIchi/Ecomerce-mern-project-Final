@@ -1,11 +1,13 @@
 import Button from '@mui/material/Button';
 import { FaAngleDown } from "react-icons/fa";
-import DialogTitle from '@mui/material/DialogTitle';
+// import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import { IoSearch } from 'react-icons/io5';
 import { MdClose } from "react-icons/md";
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Slide from '@mui/material/Slide';
+import { MyContext } from '../../App.js';
+// import { FilterList } from '@mui/icons-material';
 
 
 const Transition = React.forwardRef(function Transition(props,ref) {
@@ -16,13 +18,42 @@ const Transition = React.forwardRef(function Transition(props,ref) {
 const CountryDropdown =()=>{
 
     const [isOpenModal, setisOpenModal] = useState(false);
+    const [selectedTab, setselectedTab] = useState(null);
+
+    const [countryList, setCountryList] = useState([]);
+    
+    const context = useContext(MyContext);
+
+    const selectCountry=(index, country)=>{
+        setselectedTab(index);
+        setisOpenModal(false);
+        context.setselectedCountry(country)
+    }
+
+    useEffect(()=>{
+        setCountryList(context.countryList);
+    },[])
+
+    const filterList=(e)=>{
+        const keyword = e.target.value.toLowerCase();
+
+        if(keyword!==""){
+            const list = countryList.filter((item)=>{
+                return item.country.toLowerCase().includes(keyword);
+            });
+            setCountryList(list);
+        }else{
+            setCountryList(context.countryList);
+        }
+
+    }
 
     return (
         <>
             <Button className ='countryDrop' onClick={()=>setisOpenModal(true)}>
                 <div className='info d-flex flex-column'>
-                    <span className='label'>Vị trí</span>
-                    <span className='name'>Hà Nội</span>
+                    <span className='label'> Chọn Vị trí</span>
+                    <span className='name'>{context.selectedCountry!=="" ? context.selectedCountry.length>10 ? context.selectedCountry.substr(0,7)+'...' : context.selectedCountry : 'vị trí'}</span>
                 </div>
                 <span className='ml-auto'><FaAngleDown/></span>
             </Button>
@@ -33,35 +64,19 @@ const CountryDropdown =()=>{
                 <Button className='close_'  onClick={()=>setisOpenModal(false)}><MdClose/></Button>
 
                 <div className='headerSearch w-100'>
-                    <input type='next' placeholder='Tìm kiếm khu vực....'/>
+                    <input type='text' placeholder='Tìm kiếm khu vực....' onChange={filterList}/>
                     <Button><IoSearch/></Button>
                 </div>
 
                 <ul className='countryList mt-3'>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Hà Nội</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Thanh Hóa</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Huế</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>TP Hồ Chí Minh</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Hà Nội</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Thanh Hóa</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Huế</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>TP Hồ Chí Minh</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Hà Nội</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Thanh Hóa</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Huế</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>TP Hồ Chí Minh</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Hà Nội</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Thanh Hóa</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Huế</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>TP Hồ Chí Minh</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Hà Nội</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Thanh Hóa</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Huế</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>TP Hồ Chí Minh</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Hà Nội</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Thanh Hóa</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>Huế</Button></li>
-                    <li><Button onClick={()=>setisOpenModal(false)}>TP Hồ Chí Minh</Button></li>
+                    {
+                        countryList?.length !== 0 && countryList?.map((item,index) =>{
+                            return(
+                                <li key={index}><Button onClick={()=>selectCountry(index, item.country)} className={`${selectedTab === index ? 'active': ''}`}>{item.country}</Button></li>
+                            )
+                        })
+                    }
+                    
                 </ul> 
             </Dialog>
         </>

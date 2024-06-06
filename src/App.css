@@ -16,6 +16,8 @@ body {font-family: "Lato", sans-serif; font-size: 14;}
 ::-webkit-scrollbar-thumb{background: #ccc !important;}
 ::-webkit-scrollbar-track{background: transparent !important;}
 
+.headerWrapper{border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px;}
+
 .headerWrapper .top-strip{padding: 8px 0px }
 .headerWrapper .top-strip p{color: #fff; font-size: 12px; font-weight: 500;}
 
@@ -49,6 +51,8 @@ header .part3 .circle svg{font-size: 22px; opacity: 0.8;}
 .locationModal .countryList{margin-bottom: 0px; max-height: 400px; overflow-y: scroll; overflow-x: hidden;}
 .locationModal .countryList li{width: 100%; list-style: none;}
 .locationModal .countryList li button{width: 100%; text-transform: capitalize !important; color: #000 !important; justify-content: flex-start !important; padding: 10px 20px !important;}
+.locationModal .countryList li button:hover{background: #f1f1f1;}
+.locationModal .countryList li button.active{background: #ccc !important;}
 
 .locationModal .close_{position: absolute; top: 10px; right: 10px; color: #000 !important; min-width: 40px !important; width: 40px !important; height: 40px !important; border-radius: 50% !important;} 
 .locationModal .close_ svg{font-size: 22px;}

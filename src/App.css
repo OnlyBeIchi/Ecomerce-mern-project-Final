@@ -16,7 +16,7 @@ body {font-family: "Lato", sans-serif; font-size: 14;}
 ::-webkit-scrollbar-thumb{background: #ccc !important;}
 ::-webkit-scrollbar-track{background: transparent !important;}
 
-.headerWrapper{border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px;}
+.headerWrapper{border-bottom: 1px solid rgba(0,0,0,0.2);}
 
 .headerWrapper .top-strip{padding: 8px 0px }
 .headerWrapper .top-strip p{color: #fff; font-size: 12px; font-weight: 500;}
@@ -60,6 +60,11 @@ header .part3 .circle svg{font-size: 22px; opacity: 0.8;}
 nav .navPart1{max-width: 20%; flex: 0 0 20%}
 nav .navPart2{max-width: 80%; flex: 0 0 80%}
 
+nav .navPart1 .cartWrapper{position: relative;}
+nav .navPart1 .cartWrapper .sidebarNav{width: 100%; height: 400px; background: #fff; position: absolute; top: 100%; left: 0px;} 
+
+nav .navPart1 .cartWrapper .sidebarNav li{width: 100%;}
+
 nav .allCatTab{background: #2bbef9; padding: 10px 15px !important; border-radius: 30px !important;}
 nav .allCatTab *{color: #fff;}
 nav .allCatTab:hover{background: #2bbef9;}
@@ -68,7 +73,16 @@ nav .allCatTab .icon1 svg{font-size: 20px !important;}
 nav .allCatTab .icon2 svg{font-size: 15px !important;}
 
 nav .navPart2 ul{margin-bottom: 0px;}
+nav .navPart2 ul li{padding-bottom: 20px;}
 nav .navPart2 ul li a{text-decoration: none;}
 nav .navPart2 ul li a button{ font-size:  15px !important; font-weight: 600; text-decoration: none; color: rgba(0,0,0,0.6); text-transform: uppercase; display: flex; align-items: center; padding: 8px 15px; transition: all 0,2s ease-in-out; border-radius: 25px;}
 nav .navPart2 ul li a:hover{background: #f0faff; color: #2bbef9;}
 nav .navPart2 ul li a svg{font-size: 20px;}
+
+nav .navPart2 ul li{position: relative;}
+nav .navPart2 ul li .submenu{position: absolute; top: 150%; left: 0px; min-width: 200px; background: #fff; opacity: 0; visibility: hidden; transition: all 0.3s ease-in-out;}
+nav .navPart2 ul li .submenu a{display: block; width: 100%;}
+nav .navPart2 ul li .submenu a button{width: 100%; justify-content: flex-start !important; border-radius: 0px !important; text-transform: capitalize !important; font-weight: 600 !important;}
+nav .navPart2 ul li:hover .submenu {opacity: 1; visibility: inherit; top: 100%;}
+
+nav .navPart2 ul li .submenu a button:hover{background: #f1f1f1 !important;}
